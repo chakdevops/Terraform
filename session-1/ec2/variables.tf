@@ -3,6 +3,8 @@ variable "aws_region" {
   type          = string
   default       = "us-east-1"
 }
+
+
 variable "ami_id" {
   description = "AMI"
   type = string
@@ -13,13 +15,17 @@ variable "sg_name" {
   type          = string
   default       = "roboshop_allow_all_aws"
 }
-variable "sg_cidr_block" {
-  description   = "CIDR block for Security Group"
-  type          = string
-  default       = "10.0.0.0/16"
+variable "sg-description" {
+  type = string
+  default = "Allow TLS inbound traffic"
 }
-variable "sg_id" {
-    description = "Security group id"
-    type = string
-    default     = "aws_security_group.roboshop_allow_all.id"
+
+variable "inbound-from-port" {
+  #type = string
+  default = 0
+}
+
+variable "cidr_blocks" {
+  type = list
+  default = ["0.0.0.0/0"]
 }
