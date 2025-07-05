@@ -1,9 +1,10 @@
 resource "aws_instance" "web" {
   count = 11
-  ami           = var.ami_id
-  instance_type = "t2.micro"
+  ami           = var.ami_id # devops-practice AMI
+  # instance_type = "t2.micro"
+  instance_type = var.instance_names[count.index] == "mongodb" || var.instance_names[count.index] == "mysql" || var.instance_names[count.index] == "shipping" ? "t3.small" : "t2.micro"
   
-    tags = {
+  tags = {
     Name = var.instance_names[count.index]
   }
 }
